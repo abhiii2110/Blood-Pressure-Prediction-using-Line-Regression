@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Pressure Prediction | ML-Powered Health Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --background-color: rgba(44, 62, 80, 0.9);
+            --text-color: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('/Static/bgimg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            background-color: var(--background-color);
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-color);
+            font-weight: 300;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(236, 240, 241, 0.1);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            background-color: rgba(236, 240, 241, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .prediction {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .attribution {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blood Pressure Prediction</h1>
+        <h2>Powered by Machine Learning Algorithm</h2>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="input-group">
+                <label for="age">Age</label>
+                <input type="text" id="age" name="AGE" placeholder="Enter your age" required>
+            </div>
+            <div class="input-group">
+                <label for="bp">Current BP</label>
+                <input type="text" id="bp" name="Actual BP" placeholder="Enter your current BP" required>
+            </div>
+            <button type="submit" class="btn">Predict Blood Pressure</button>
+        </form>
+        <div class="prediction">
+            {{ prediction_text }}
+        </div>
+    </div>
+    <div class="attribution">Made by Abhishek Sharma</div>
+</body>
+</html>
